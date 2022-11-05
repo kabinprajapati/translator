@@ -1,0 +1,117 @@
+virtual environment
+---------------------
+to install virtual environment
+C:\Users\user>python -m venv venvapp
+
+to check the venv folder
+C:\Users\user>dir
+
+to activate virtual environment
+C:\Users\user>venvapp\Scripts\activate
+
+to deactivate virtual environment
+C:\Users\user>deactivate
+
+
+PS D:\> python -m venv formenv
+
+------------------------------
+
+PS D:\> formenv\Scripts\activate
+(formenv) PS D:\>
+
+then create django
+(formenv) PS D:\> pip install django
+
+After installing django we need to create a project
+in the terminal
+django-admin startproject formapp
+
+this will create a folder formapp and manage.py file automatically
+
+video 285
+python manage.py migrate
+it created sql database file sqlite3
+
+#create superuser
+python manage.py createsuperuser
+
+#run server
+python manage.py runserver
+
+287
+#make folder blog to make application of same name
+python manage.py startapp blog
+
+open vs code
+
+
+#to add the app blog with dzango setting we need to mysite folder to setting.py 
+and in installed_apps add 'blog'to make the app.
+
+video288
+in model,py write code
+class post(models.model):
+
+then register model in admin.py
+
+python manage.py makemigrations
+makes initial.py
+
+python manage.py migrate
+makes changes in database
+
+video290
+create templates folder in main dzango folder
+create blog.html in templates folder
+templates should be connected with model.py is through views.py in blog folder
+we made templates and should tell jango setting where they are located so
+in setting.py declare templates
+
+
+video 291
+in model.py class post represents the database
+and should be connected to the database with blog.html
+views.py is the middle man
+class blogview in views.py connects model to template
+
+video 292
+connect url to view
+go to main folder blog and make new file urls.py
+
+video 293
+to change the view in admin interface
+in admin.py
+#added
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date_created', 'author')
+
+
+# Register your models here.
+admin.site.register(Post, PostAdmin)
+
+look at PostAdmin
+
+video 294
+to create a homepage
+in blog urls.py urlpatterns add new path
+#added
+    path('', views.HomeView.as_view(), name='home_view')
+
+then in views.py
+add new class
+#added
+class HomeView(generic.TemplateView):
+    template_name = 'index.html'
+
+
+video 296
+make new html for homepage ie index.html
+post_list is aview need to be defined in views.py
+after making html go to views.py to make class 
+
+
+
+
+
+
